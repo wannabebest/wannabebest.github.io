@@ -354,6 +354,10 @@ header .logo {
 }
 
 /* --------------- About Section Styling --------------- */
+.about {
+  position: relative;
+  padding: 7rem 0;
+}
 
 /* --------------- Skills Section Styling --------------- */
 
