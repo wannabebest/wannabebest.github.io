@@ -7,6 +7,12 @@ function stickyNavbar() {
   header.classList.toggle("scrolled", window.pageYOffset > 0);
 }
 
+const links = document.querySelectorAll(".nav-link");
+
+window.addEventListener("scroll", () => {
+  activeLink();
+});
+
 window.addEventListener("scroll", stickyNavbar)
 /* --------------- Reveal Animation --------------- */
 let sr = ScrollReveal({
@@ -101,6 +107,25 @@ wrapper.addEventListener("mouseleave", autoPlay);
 /* --------------- Modal Pop Up Animation Animation --------------- */
 
 /* --------------- Change Active Link On Scroll --------------- */
+function activeLink() {
+  let sections = document.querySelectorAll("section[id]");
+  let passedSections = Array.from(sections).map((sct, i) => {
+    return {
+      y: sct.getBoundingClientRect().top - header.offsetHeight,
+      id: i,
+    };
+  })
+    .filter((sct) => sct.y <= 0);
+
+
+  let currSectionID = passedSections.at(-1).id;
+
+  links.forEach((l) => l.classList.remove("active"));
+  links[currSectionID].classList.add("active");
+}
+activeLink();
+
+
 
 /* --------------- Change Page Theme --------------- */
 

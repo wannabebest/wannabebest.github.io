@@ -44,6 +44,10 @@ body.dark {
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   overflow-x: hidden;
   font-family: "Poppins", sans-serif;
@@ -268,11 +272,13 @@ header .logo {
   transition: 0.3s;
 }
 
-.nav-link:hover {
+.nav-link:hover,
+.nav-link.active {
   color: var(--heading-color);
 }
 
-.nav-link:hover::after {
+.nav-link:hover::after,
+.nav-link.active::after {
   width: 100%;
   opacity: 0.2;
 }
@@ -740,9 +746,20 @@ textarea.form-input {
   transform: translate(-50%, -50%);
 }
 
-/* --------------- Subscription Section Styling --------------- */
+
 
 /* --------------- Footer Styling --------------- */
+
+footer {
+  padding: 4rem 0;
+}
+
+footer .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
 
 /* --------------- 1000px Screens --------------- */
 
