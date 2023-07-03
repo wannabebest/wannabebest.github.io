@@ -9,6 +9,10 @@ function stickyNavbar() {
 
 const links = document.querySelectorAll(".nav-link");
 
+const toggle_btn = document.querySelector(".toggle-btn");
+
+const hamburger = document.querySelector(".hamburger");
+
 window.addEventListener("scroll", () => {
   activeLink();
 });
@@ -23,11 +27,8 @@ let sr = ScrollReveal({
 sr.reveal(".showcase-info", { delay: 400 });
 sr.reveal(".showcase-image", { origin: "top", delay: 500 });
 
-/* --------------- Skills Progress Bar Animation --------------- */
 
-/* --------------- Services Counter Animation --------------- */
 
-/* --------------- Portfolio Filter Animation --------------- */
 
 /* --------------- Portfolio Filter Animation --------------- */
 
@@ -102,9 +103,7 @@ document.addEventListener("mouseup", dragStop);
 carousel.addEventListener("scroll", infiniteScroll);
 wrapper.addEventListener("mouseenter", () => clearTimeout(timeoutId));
 wrapper.addEventListener("mouseleave", autoPlay);
-/* --------------- Modal Pop Up Animation Animation --------------- */
 
-/* --------------- Modal Pop Up Animation Animation --------------- */
 
 /* --------------- Change Active Link On Scroll --------------- */
 function activeLink() {
@@ -128,5 +127,37 @@ activeLink();
 
 
 /* --------------- Change Page Theme --------------- */
+let firstTheme = localStorage.getItem("dark");
+
+changeTheme(+firstTheme);
+
+function changeTheme(isDark) {
+  if (isDark) {
+    document.body.classList.add("dark");
+    toggle_btn.classList.replace("uil-moon", "uil-sun");
+    localStorage.setItem("dark", 1);
+  }
+  else {
+    document.body.classList.remove("dark");
+    toggle_btn.classList.replace("uil-sun", "uil-moon");
+    localStorage.setItem("dark", 0);
+  }
+}
+
+
+toggle_btn.addEventListener("click", () => {
+  changeTheme(!document.body.classList.contains("dark"));
+});
+
+
 
 /* --------------- Open & Close Navbar Menu --------------- */
+hamburger.addEventListener("click", () => {
+  document.body.classList.toggle("open");
+  document.body.classList.toogle("stopScrolling");
+});
+
+links.forEach(link => link.addEventListener("click", () => {
+  document.body.classList.remove("open");
+  document.body.classList.remove("stopScrolling");
+}));
